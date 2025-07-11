@@ -1,16 +1,17 @@
-# CUBO
-Una teoria interpretativa 
-# Modello Cubo Integrato
+# Funzione Cubo Integrato
 
 Questo progetto rappresenta una simulazione computazionale di una struttura tridimensionale composta da cubetti evolutivi, ognuno definito come funzione dello spazio e del tempo integrato.
 
-## Descrizione
+## 📌 Descrizione
 
 Ogni cella Cᵢⱼₖ(t) evolve nel tempo in base a:
-- posizione spaziale (x, y, z)
-- tempo vissuto integrato τ(t)
-- stato dei cubetti adiacenti
+- Posizione spaziale (x, y, z)
+- Tempo vissuto integrato τ(t)
+- Stato dei cubetti adiacenti
 
+## 🔧 Funzioni principali
+
+```python
 def phi(t):
     return t ** 0.5  # o altra funzione temporale
 
@@ -19,6 +20,11 @@ def evoluzione_locale(cell, vicini, t):
     nuova_tau = cell["tau"] + phi(t) * dt
     nuovo_stato = f(cell["state"], media_stati, nuova_tau)
     return nuovo_stato, nuova_tau
+```
+
+## 🔁 Ciclo di evoluzione
+
+```python
 while t < T_max:
     nuova_C = deepcopy(C)
 
@@ -33,6 +39,11 @@ while t < T_max:
 
     C = nuova_C
     t += dt
+```
+
+## 🧩 Funzione di vicinato
+
+```python
 def get_vicini(C, x, y, z):
     vicini = []
     for dx in [-1, 0, 1]:
@@ -44,3 +55,8 @@ def get_vicini(C, x, y, z):
                 if 0 <= xi < N_x and 0 <= yi < N_y and 0 <= zi < N_z:
                     vicini.append(C[xi][yi][zi])
     return vicini
+```
+
+## 🧠 Significato
+
+Il modello simula l'evoluzione collettiva e individuale di ogni cubetto nel tempo, con comportamento emergente non lineare. La trasformazione temporale integrata τ(t) consente una visione dinamica della rete, utile in applicazioni teoriche di tipo fisico, cognitivo e informativo.
